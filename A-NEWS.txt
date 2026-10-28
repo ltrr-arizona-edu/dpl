@@ -1,0 +1,255 @@
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+   DENDROCHRONOLOGY PROGRAM LIBRARY    Update number 150       18 April 2001
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+                     SOME NEW FEATURES OF THE PROGRAMS
+
+* This A-NEWS.TXT file is updated when a new version of one or more programs
+  or routines becomes available.  It describes new features in the programs,
+  with the most recent changes first.
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+                            DISCLAIMER  (See below)
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+* If you find problems or have suggestions about any of the programs, please
+  contact Richard Holmes at this e-mail address:  RHolmes@dakotacom.net
+
+* If you have detected a problem, it is possible that it has already been
+  found and the corrected version has been made available.  Make sure you
+  have the latest versions of the programs.
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* All programs were recompiled, although some do not have significant changes.
+  [18APR01]
+
+* Program YUX allows you to limit the length of column identification if you
+  select series identifications as the column headers.  Default maximum length
+  is 16 characters.
+  Since Feb 1999 Program YUX will include up to 200 series (columns), with a
+  maximum length of 4096 values (rows).
+  In Mar 1998 precision was improved; there are more than double the number of
+  significant digits.  This means that large and small values are given with
+  maximum precision, an important improvement.  [09FEB01]
+
+* Programs ARSTAN and ARSTANL print as part of the common interval analysis
+  the time span of years over which the variance agreement between finite and
+  theoretical infinite sample size, or signal strength (SS) attains the levels
+  0.75, 0.80, 0.85 and 0.90, and how many trees are required to attain this
+  level.  Also indicated is whether the time span is (C) continuous, 
+  (I) interrupted or (N) not attained.  [24JAN01]
+
+* Program COFECHA will handle highly skewed series or series where the spline
+  does not fit well.  It is recommendable in these cases to use a more
+  flexible spline.  [21NOV00]
+
+* Program FMT has an additional capability to sort files of time series.
+  You may sort by first year of the series,, last year, or number of data in
+  the series; and in ascending or descending order.  [10OCT00]
+
+* Program FMT handles meteorological data in any format with the year and
+  12 monthly values.  This includes the standard (I4,12I5) or (I4,12F5.1) as
+  well as a free form delimited by one or more spaces.  [29APR99]
+
+* Program COFECHA will compute Spearman rank correlations (nonparametric)
+  as well as the quantitative Pearson correlations (parametric).  Spearman
+  correlations are more robust than Pearson correlations, and may be prove
+  helpful to diminish the effect of outliers.  Feedback from users is welcome;
+  please e-mail me at RHolmes@dakotacom.net   [26APR99]
+
+* Data in Compact format are more secure.  The routine which reads data in
+  Compact format will do it correctly even when the fields on the
+  first line for the number of data (=N) and the initial year (=I) are
+  longer or shorter than 8 columns.
+  It acommodates the format and tilde (~) in a column left of column
+  80, but the tilde must be present and not beyond column 80.
+  All programs were recompiled with this capability.  [30MAR99]
+
+* Program SSA (Singular Spectra Analysis) places output PCs correctly in
+  time.  PCs and Eigenvectors are saved in separate files.  [30MAR99]
+
+* Programs COFECHA and COF10K:
+  Discovery and placement of locally absent rings is the most subjective step
+  in tree-ring dating.  For quality control you may elect to omit (recommended)
+  or to include absent rings in the Master Dating Series and in segment
+  correlations.  If you omit absent rings from correlations, they will still
+  be checked to verify that they occur where rings are usually narrow.
+  Omitting absent rings in segment correlations provides a check on observed
+  ring patterns.  By default, Program COFECHA (and COF10K) omit absent rings
+  from computing the master series and from the correlations of segments.
+  The program also more conveniently lists absent rings on the first page by
+  series identification.  [30MAR99]
+
+* Programs ARSTAN and ARSTANL allow the option of fitting a constant spline
+  whose rigidity is a user-determined proportion of the mean length of series.
+  For example, if you specify the detrending option of "-67" (67% of the
+  length of each series), you are asked if you wish to apply a spline of
+  constant rigidity of a proportion of the length of the mean series.
+  The programs also save files for plotting (alternating series of measure-
+  ments and curves) on request in either Compact or Measurement format.
+  [30MAR99]
+
+* The scattergram program is available with the name SCATTER.  Warning:
+  The output may be difficult to print, as each scattergram plot is
+  intended to be printed on two pages with a line length of 132 characters.
+  [15FEB99]
+
+* A new program, SAMDEP, selects from a large set of tree-ring series, those
+  series which include the longest series and provide a relatively homogeneous
+  sample depth through time.  [08JAN99]
+
+* Program CASE handles correctly casewise files where the header is all
+  numeric.  [18NOV98]
+
+* A problem with series identification was corrected and the programs were
+  recompiled.  [09NOV98]
+
+* Program SIGLOF yields accurate percent of variance.  [03SEP98]
+
+* The following routines are independent and are no longer included within
+  Program DPL:
+
+       Routine in DPL	Independent program
+       --------------	-------------------
+		COF	COFECHA & COF12K
+		CRN	CRONOL
+		EDT	EDRM
+		FMT	FMT
+		PCA	PCA
+		SCA	SCATTER
+		YUX	YUX
+
+ Graphics software produces much better scattergrams than program SCATTER.
+ Programs such as SCRPLT make far better screen plots than routine DPL/SCR.
+ [25AUG98]
+
+* Program COFECHA was recompiled with a minor change to the log-transform
+  algorithm.  [30JUL98]
+
+* Program ARSTAN permits specification of the percent of variance in indices
+  from a cubic smoothing spline.  [24JUL98]
+
+* A new program, CASE, will read files in column or casewise format, such as
+  those for spreadsheet or graphics programs, and convert them to Compact
+  format.  This file may in turn be converted to any standard format with
+  Program FMT.  (This routine will be incorporated into programs such as
+  COFECHA, ARSTAN and CRONOL.)  [10JUL98]
+
+* Program ARSTANL is identical to ARSTAN, but it will handle very large data
+  sets, up to 600 time series spanning up to 12000 years.
+  Warning:  A program of this size may not load on some computers, or it may
+  be very slow to load.  [24JUN98]
+
+* In Programs ARSTAN, CRONOL and DPL/CRN, if a time series is to be divided by
+  a detrending curve, it is subtracted instead if the time series goes
+  negative or the detrending curve goes to zero or negative.  The mean of the
+  resulting indices will be 1.0  [09JUN98]
+
+* Program ARSTAN uses the Compact format by default, and saves files with the
+  number of radii (_ARS.NRA) and the number of trees (_ARS.NTR).  [29MAY98]
+
+* A new format for data, known as "New compact", is now available in Programs
+  DPL, FMT, COFECHA and SCRPLT.  It will eventually be available in all
+  programs in this group.  The advantage of this format is the preservation of
+  precision even when extremely large values are found in the same data set.
+  [20MAY98]
+
+* Now available is a new version of COF10K, a high-capacity COFECHA.
+  It will work with time spans of up to 10240 years in length and 8000 series.
+  The program will run slowly with a very large data set.  [19MAY98]
+
+* The following programs are now independent of DPL:
+    FMT  (Manipulate data or change format)
+    PCA  (Principal Components Analysis)
+    YUX  (Makes casewise file for spreadsheet)
+      [13MAY98]
+
+* Program ARSTAN no longer adjusts the mean of the chronology to unity.
+  Eigenvalues and Eigenvectors are saved in a file with the extension _.EV;
+  and Principal component amplitude series are saved in a file with extension
+  _.PC  [16APR98]
+
+* Program EDRM and routine DPL/EDT had a problem with series identifications;
+  this has been remedied.  [16MAR98]
+
+* Program ARSTAN tree summaries are truncated if required to include only
+  continuous time spans; they do not include voids between non-continuous
+  radial series.  [29JAN98]
+
+* DPL/FMT now allows you to fit a spline curve of rigidity proportional to
+  the length of the series.  For example, a rigidity of "-67" will fit a
+  spline of 50% frequency response of 67% of the series length.  You may
+  also save both spline and indices in a single run.  [01DEC97]
+
+* The date computation in all programs was corrected so that there will be
+  no problem when the year 2000 arrives.  Version was set to 3.00 in most
+  programs.  [14JUL97]
+
+* The algorithm in Programs ARSTAN, CRONOL and DPL/CRN for computing the
+  negative exponential curve fit was extensively modified and dramatically
+  improved by Ed Cook of the Tree Ring Laboratory at Lamont-Doherty Earth
+  Observatory.  The new routine is now included in all versions of the
+  programs.  The negative exponential curve fit may go negative, that is,
+  the curve may have a negative asymptote.  The user may override this
+  provision and revert to linear regression fit.  This is in Option 2,
+  "Detrending Method", when curve fit type "1" is selected.  When
+  the series of measurements is divided by the curve, however, a constant is
+  added to raise both series to all positive values, the division is performed,
+  and the constant is subtracted again.  Program ARSTAN checks for indices over
+  4.0 and lists them by series; this is one tool you may use to find problems
+  in the curve fit.  [02FEB98], [03JUN97]
+
+* You may now set your favorite default colors for text and screen.  You may
+  have one color combination during execution of programs and another when you
+  are outside them.  Use either DPL and type (~), or use program SETCLR.  If
+  the file ANSI.SYS is not activated in your CONFIG.SYS file, use SETCLR and
+  respond with a slash (/).  All programs were recompiled today.  [24OCT96]
+
+* Program EVENT (Superposed Epoch Analysis) now will handle a maximum window
+  size of 102 years -- those before plus those after plus key year.  [11SEP96]
+
+* Mean sensitivity is now calculated even for series that contain negative
+  values, according to the formula:
+
+      MS = SUM(I=2,N)/(N-1)  2. * |(Y(I) - Y(I-1))| / ( |Y(I)| + |Y(I-1)| )
+
+           if ( |Y(I)| + |Y(I-1)| ) is non-zero
+
+  Where MS is mean sensitivity of the series
+        Y  is the time series of values
+        N  is the number of values in the series
+
+  With the caveat:  If there are any negative values in a series, the decimal
+  point for mean sensitivity is printed as an asterisk.  In such cases mean
+  sensitivity cannot strictly be calculated correctly.  [24APR96]
+
+* In opening files two new convenient features are added.  The program spells
+  out the format it finds for the data file; you may correct it.
+  After seeing the first eight lines of the data file, you may close
+  the file with a backslash (\) and open another file as desired.
+  Data series in Compact format may be interspersed among those in ITRDB
+  Measurement or Index format, if the first series is not in Compact format.
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+                                 DISCLAIMER
+
+* The following disclaimer applies to the Dendrochronology Program Library,
+  Program ARSTAN, all programs in the Dendroecology Program Library, and any
+  other software distributed by myself directly, via anonymous FTP, or by
+  any other means.
+
+* All software has received only limited testing and neither the author(s),
+  the Laboratory of Tree-Ring Research, nor the University of Arizona can
+  accept responsibility for its compatibility with other computer systems or
+  user needs.  The user must judge its efficacy for the intended use.
+
+* Although every effort is made to ensure that the software functions
+  properly, no guarantee is made to this effect and we cannot be responsible
+  for any problems with it, including adaptation of the software to any
+  particular computer system.
+
+* The software is made available free of charge.  Any payment accepted
+  is for actual costs of diskettes, copying, printing and/or postage.
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

@@ -1,0 +1,207 @@
+Program CHISQ
+
+Chi-square tests and indices of association for the
+timing and significance of production-weather relationships
+
+by Richard L. Holmes  -  30 September 2000, revised 8 April 2001
+
+INTRODUCTION
+
+The concept forming the basis for Program CHISQ was developed by Dr Joseph M Caprio, and is explained in chapter 8, "Weather and winterkill of wheat: a case study", with the method outlined on pages 76 to 78, in Kalma, J.D., Laughlin, G.P., Caprio, J.M. and Hammer, P.J., Advances in Bioclimatology - 2. The bioclimatology of frost: Its occurrence, impact and protection; Springer-Verlag, New York, 1992.
+
+Another case study is described by J M Caprio and H A Quamme in the Canadian Journal of Plant Science, "Weather conditions associated with apple production in the Okanagan Valley of British Columbia", pages 129 to 137.  [Please complete this citation]
+
+Program CHISQ performs a series of chi-square tests to calculate indices of association to determine the significance of the relationship of production vs. daily weather, using a window of three weeks and moving in increments of one week.  Scanning accumulates meteorological values until the highest significant index of association is reached.  This index value is assigned a positive or negative value according to whether the count is an excess or deficit from the expected count.
+
+RUNNING PROGRAM CHISQ
+
+Start the program by typing its name:  CHISQ.  Either upper or lower case letters may be used in responding to prompts.  Responding with <Enter> alone will give the default value.  Note that the program may be terminated at any prompt by typing a slash (/) and <Enter>. 
+
+Respond to the prompt by providing a run identification of up to 5 characters.  The next prompt is for a title to identify the program run, up to 120 characters.
+
+The following prompt asks for the name of the data file with the tree-ring or production chronology, which may be in any of the standard formats for chronologies, including Compact/Precision and ITRDB chronology index or measurement.
+
+The next asks for the name of the file with daily weather data in one or more columns.  This file may contain a line of text (optional) to identify the data.
+
+Then give the column number of the data to be analyzed (default is to read the first column):
+
+		 Column 1  = minimum daily temperature		(Identified as Tmn on output)
+		 Column 2  = maximum daily temperature		(Identified as Tmx on output)
+		 Column 3  = daily precipitation			(Identified as Pre on output)
+		"Column 4" = daily temperature range		(Identified as Trg on output)
+			("Column 4" is not actually a data column;
+			the range is computed as column 2 minus column 1)
+
+Note:  An auxiliary program may be used to convert the data format to the one read by Program CHISQ; two such programs are CAPDAT (converts from the format used by Dr J M Caprio) and DEBDAT (converts from the spreadsheet format used by Deborah Hemming).
+
+The user is prompted for the number of days per period		(default is 21 days)
+		... then for the lag in days between periods		(default is  7 days)
+
+The program calculates the integer number of periods:
+						Periods = 1 + (730 - Days) / Lag
+	or with default settings,		      102 = 1 + (730  -   21)   /    7
+
+If the number of periods exceeds 408 the user is asked to increase the number of days per period and/or to lengthen the lag between periods.
+
+Finally, the user is asked to set the size of the increment for cumulative steps  (default is 0.5 units).
+
+The annual tree-ring or production chronology and the daily weather data are read (missing values are set to -9999.), the range of daily weather data is found, and a time span is calculated over which the analysis can be performed.  Since the chronology value t will be compared with the weather data from January of year t-1 through December of year t, the analysis begins with the first year of the chronology or the second of the weather data, whichever is later, and ends with the last year of the chronology or the last of the weather data, whichever is earlier.
+
+Production years in the time span of analysis are divided into "Good" years (with the highest 25% of the values), "Normal" years (with the middle 50% of the values) and "Poor" years (with the lowest 25% of the values).  Years in the analysis period are assigned classification (G, N, P) and listed.
+
+WHAT PROGRAM CHISQ DOES
+
+The chronology and the daily weather data are now in memory and parameters for the program run have been determines.
+
+Each 21-day period over the two-year span is processed.  The first is from 1 to 21 January of the prior year, the second from 8 to 28 January, and so on until the 102nd period which covers from 9 to 29 December of the current year.
+
+Sets of four scans of the daily data are done for each 21-day period:
+		Low to high scan of weather data vs. poor and normal production years;
+		Low to high scan of weather data vs. good and normal production years;
+		High to low scan of weather data vs. poor and normal production years;
+		High to low scan of weather data vs. good and normal production years.
+
+For the first scan the program counts occurrences of values between the minimum value in the range of daily data and one increment above the minimum, and also counts when these values match years in the chronology of poor, average and good production.  Indices of association based on chi-squares are calculated for the actual and expected counts of matches with poor and normal production, and for good and normal production:
+
+			IP = (AP-EP)2/EP + (AN-EN)2/EN
+	and
+			IG = (AG-EG)2/EG + (AN-EN)2/EN
+
+Where:
+	IP is the index of association of weather data in the range with years of poor production
+	IG is the index of association of weather data in the range with years of good production
+
+	AP and EP are actual and expected counts of weather data in the range, in years of poor production
+
+	AG and EG are actual and expected counts of weather data in the range, in years of good production
+
+	AN and EN are actual and expected counts of weather data in the range, in years of normal production
+
+For the second step in the scan the program counts occurrences of values between the minimum value in the range of daily data and two increments above the minimum, etc.  This is repeated until the full range of the data has been reached.  The largest index of association is reported for each of the cumulative scans.  
+
+Although chi-square values are always positive, the index of association is assigned a positive or negative value according to whether the count of "poor" or "good" years is an excess or deficit from the expected count.  The expected (or theoretical) count is the proportion of chronology years in the "poor" or "good" range times the number of data present (not missing). .  For example, since the proportion of "poor" or "good" years is 0.25, then the expected (or theoretical) count for a 21-day period over a time span of analysis of 100 years with no missing data would be 21 days * 100 years * 0.25 = 2100 * 0.25 = 525 expected count.
+
+The above description is for scans from low to high, from the minimum value in the range of data up one, two, three . . . to n increments.  In the same way scans are done from high to low, from the maximum value down one, two, three . . . to n increments.
+
+The indices of association for each 21-day period are assigned the central date of the period and appear in columns 3 to 6 in the spreadsheet (.XL) file.
+
+If the index of association exceeds 7.0 the relationship is considered to be significant at the 99% level; if between 4.0 and 7.0, at the 95% level; this is recorded in the .OUT file which contains full information on all scans.
+
+CORRELATIONS
+
+Though not part of the method developed by J M Caprio, correlations are an added feature of Program CHISQ.  The chronology (C) is split into two series:
+
+	(A)  values above the mean; values below the mean are set to the mean;
+	(B)  values below the mean; values above the mean are set to the mean.
+
+The daily data are averaged over the 21-day period for each year, and the yearly means are correlated with the chronology (C) and with each of the split components (A) and (B).  The correlations for each 21-day period appear in columns 7 to 9 in the spreadsheet (.XL) file.
+
+CHRONOLOGY DATA FORMAT
+
+For the chronology or annual production series, Program CHISQ will read any of several ASCII formats, some of which are listed below.  If the format of your data is different from any of these, you may be able to change it with Program FMT.  One or more lines of text may precede the data in the files as a header or title.  Spreadsheet or casewise files may be converted using Program CASE.
+
+(1)	ITRDB standard ring measurement format (Tucson measurement format).  Precision of data is 0.001 or 0.01 (millimeters usually).  Format for each line is (A8,I4,10I6), where (A8) is the series identification, (I4) the first year of data in the decade, and (10I6) a decade of ring measurements.
+
+(2)	ITRDB standard ring index or chronology format (Tucson index format).  Format for each line is (A6,I4,10(I4,I3)), where (A6) is the chronology identification, (I4) the first year of the decade, and (10(I4,I3)) a decade of chronology indices to the nearest 0.001, followed by the number of tree-ring series represented by the index.
+
+(3)	Compact or Precision time series formats.  This format is recommended for most time series because it is not limited by the scale of the data and it conserves precision at any scale
+
+(4)	Two columns, year then value; or two columns, value then year.
+
+DAILY WEATHER DATA FORMAT
+
+The format read by Program CHISQ is one day per line, with the year and day of the year (4 columns each); then up to three columns in free format containing daily values (minimum temperature, maximum temperature, precipitation).  Missing values are represented by "-9999."  The title line and the first few lines of data in a sample file are shown:
+
+Palisades Ranger Station  Tmin, Tmax, Precip
+1910   1 34.76 39.6 0.
+1910   2 33.99 41.3 0.
+1910   3 26.2 30.8 .45
+1910   4 20.75 26.4 .12
+1910   5 11.4 18.5 0.
+1910   6 5.95 22.9 0.
+1910   7 8.29 34.3 0.
+1910   8 12.18 46.6 0.
+1910   9 17.63 48.4 0.
+1910  10 22.3 47.5 0.
+1910  11 30.09 34.3 .57
+1910  12 27.76 38.7 0.
+								Etc. ...
+
+ABOUT THE PROGRAM
+
+The current capacity of the program is a tree-ring (or annual production) chronology of 8192 years, and daily weather data spanning the years 1780 to 2030.  A small proportion of missing data is tolerable, but these values must be set to a large negative number such as -9999.  Ideally data values for all days are present, but 29 February may be omitted; the program will handle the situation.  The program is set by default to process 102 periods of 21 days with a lag of 7 days between periods, though these parameters may be changed by the user.
+
+The Fortran-77 code for Program CHISQ was written by R L Holmes in May 2000, making use of many routines previously developed by him.  It was subsequently modified several times on request.  Program CHISQ is intended to strictly follow Dr Caprio's method, paralleling Program CSQ01 written by J Wild in association with Dr Caprio, but CHISQ was written with no reference to the code of CSQ01 since this program is inflexible and uses both input and output data formats that require a great deal of manipulation both before and after running the program.
+
+Following is a sample .LOG file from Program CHISQ.  Note that a list with a brief characterization of the output files appears near the beginning of this file.
+
+File: PALISTmx.LOG
+Program CHISQ          Version 1.04P          09:20  Sun 08 Apr 2001
+
+Palisades R.S. chronology vs Max temp
+
+Chi-Square Test for Chronology vs Weather
+The concept for this program was developed by Dr Joseph M Caprio
+
+Output files:
+    PALISTmx.LOG  Information on program run (this file)
+    PALISTmx.OUT  All output data as in original program
+
+Column files:
+    PALISTmx.LHP  Low-to-high scan and Poor chronology years
+    PALISTmx.LHG  Low-to-high scan and Good chronology years
+    PALISTmx.HLP  High-to-low scan and Poor chronology years
+    PALISTmx.HLG  High-to-low scan and Good chronology years
+
+Column file for spreadsheets combining all scans:
+    PALISTmx.XL  Dated chi-square values & correlations
+
+Data file in Compact format combining all scans:
+    PALISTmx.DTA Chi-square values & correlations
+
+
+Chronology data file:  PALISADE.CRN  Ident: TAKE3S
+  Time span of chronology  1856  1998   143 years
+  Time span of analysis    1895  1998   104 years
+
+  Number of periods to analyze   102
+  Number of days per period       21
+  Lag in days between periods      7
+
+  POOR years    26 selected,  25.00%
+  NORMAL years  52 selected,  50.00%
+  GOOD years    26 selected,  25.00%
+  TOTAL years  104           100.00%
+
+Classification of chronology by year:  Poor, Normal, Good
+   1895P 1896P 1897N 1898G 1899G 1900P 1901N 1902P 1903N 1904P
+   1905N 1906N 1907G 1908G 1909G 1910P 1911G 1912N 1913N 1914G
+   1915P 1916N 1917G 1918P 1919N 1920G 1921P 1922N 1923N 1924N
+   1925N 1926P 1927N 1928N 1929G 1930G 1931G 1932N 1933N 1934P
+   1935N 1936N 1937N 1938N 1939N 1940N 1941G 1942N 1943N 1944N
+   1945N 1946N 1947P 1948P 1949G 1950G 1951N 1952G 1953N 1954G
+   1955N 1956P 1957P 1958N 1959P 1960P 1961P 1962P 1963N 1964N
+   1965G 1966G 1967G 1968N 1969N 1970N 1971P 1972P 1973N 1974P
+   1975G 1976G 1977N 1978N 1979G 1980N 1981N 1982P 1983N 1984N
+   1985N 1986N 1987G 1988N 1989N 1990N 1991N 1992G 1993P 1994N
+   1995N 1996P 1997P 1998G
+
+Daily weather data file:  PALISAD.DAY
+  Ident: Palisades Ranger Station reconstructed Tmin, Tmax, Precip
+  Time span  1894  1999   106 years; data column  2  Tmx
+  Range of daily data        12.000   91.000
+   40 steps of    2.000 units
+  Each scan 2184 data values
+
+Correlations for chronology:
+   .861 between chronology and high half
+   .839 between chronology and low half
+   .445 between high and low halves
+
+- = < [ Program CHISQ ] > = -
+
+
+
+6
+
+
