@@ -5,8 +5,8 @@
 > record, not as working software.
 
 The Dendrochronology Program Library is a collection of DOS-era programs for
-dendrochronology and dendroecology, written and maintained by **Richard L. Holmes**
-at the Laboratory of Tree-Ring Research (LTRR), University of Arizona. This
+dendrochronology and dendroecology, written and maintained by the legendary 
+**Richard L. Holmes** at the Laboratory of Tree-Ring Research (LTRR). This
 repository preserves the final public distribution — **Update 150, 18 April 2001** —
 for posterity.
 
