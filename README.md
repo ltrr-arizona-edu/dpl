@@ -14,10 +14,10 @@ The programs are 16-/32-bit DOS executables that depend on DOS memory managers
 (`DOSXMSF` / `DOSXNT`) and the `PKUNZIP` utility, and they will not run on
 present-day systems without a DOS emulator.
 
-## Why this matters
+## Why preserve this software? 
 
-Several DPL programs became standard tools in tree-ring laboratories worldwide
-and shaped how the field does quantitative dendrochronology:
+DPL programs were pioneering pieces of software and several became standard tools 
+in tree-ring laboratories worldwide and shaped how the field does quantitative dendrochronology:
 
 - **COFECHA** — crossdating and measurement quality control. For decades the de
   facto standard for verifying the dating and measurement accuracy of tree-ring
@@ -25,7 +25,7 @@ and shaped how the field does quantitative dendrochronology:
 - **ARSTAN** — chronology development with detrending and robust statistical
   analysis. The standard program for building standardized tree-ring chronologies.
 
-The ideas these programs pioneered continue today in modern, open-source tools
+The ideas and techniques these programs created continue today in modern, open-source tools
 such as [dplR](https://opendendro.org/r/) (R) and [dplPy](https://opendendro.org/python/)
 (Python).
 
