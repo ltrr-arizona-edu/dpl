@@ -72,9 +72,10 @@ The complete list of programs and their descriptions is in `A-INFO.HTM` and
 ## Provenance
 
 Written and maintained by **Richard L. Holmes**, Laboratory of Tree-Ring Research,
-University of Arizona. The 2001 distribution preserved here was mirrored for public
-download courtesy of José A. Boninsegna, Silvia Delgado, and Eduardo Rubén Soria,
-Laboratorio de Dendrocronología, CRICYT-CONICET, Mendoza, Argentina.
+University of Arizona. The 2001 distribution preserved here was also mirrored
+at the Laboratorio de Dendrocronología, CRICYT-CONICET, Mendoza, Argentina
+by José A. Boninsegna, Silvia Delgado, and Eduardo Rubén Soria,
+
 
 ## License & use
 
