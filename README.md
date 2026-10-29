@@ -16,8 +16,9 @@ present-day systems without a DOS emulator.
 
 ## Why preserve this software? 
 
+In making these tools widely available, Richard Holmes revolutionized the field. 
 DPL programs were pioneering pieces of software and several became standard tools 
-in tree-ring laboratories worldwide and shaped how the field does quantitative dendrochronology:
+in tree-ring laboratories worldwide and shaped how the field does quantitative dendrochronology.
 
 - **COFECHA** — crossdating and measurement quality control. For decades the de
   facto standard for verifying the dating and measurement accuracy of tree-ring
